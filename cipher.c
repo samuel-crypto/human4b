@@ -58,16 +58,19 @@ uint8_t generate_keybit(uint8_t pos, uint8_t *key, size_t keylen)
 	}
 	
 	uint8_t a = pos % 16;
-	uint8_t b = ((pos - a) / 16) % 16;
+	pos -= a;
+	pos /= 16;
+	uint8_t b = pos % 16;
 	uint8_t c = key[0];
 	perform_ks_rounds(&a, &b, &c);
+	
+	fflush(stdout);
 	
 	for(size_t i = 0; i < (keylen - 1) / 3; i++)
 	{
 		a = a ^ key[3*i + 1];
 		b = b ^ key[3*i + 2];
-		c = b ^ key[3*i + 3];
-		
+		c = c ^ key[3*i + 3];
 		perform_ks_rounds(&a, &b, &c);
 	}
 	

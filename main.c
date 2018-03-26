@@ -3,12 +3,14 @@
 #include <stdint.h>
 #include <string.h>
 #include "cipher.h"
+#include "rot.h"
 
 #define USAGE "./human4b --hex/--bin HEXKEY\n--hex: Print output in hex\n--bin: Print output in ASCII equivalent of binary output\nEach HEXKEY digit is a hex number between 0 and 15 inclusive, separated by spaces and the length is to be 3N + 1 where N is natural number"
 
 uint8_t get_hex(char c);
 int main(int argc, char **argv)
 {
+	
 	if(argc != 3 || (strlen(argv[2]) - 1) % 3 != 0)
 	{
 		printf("%s\n", USAGE);

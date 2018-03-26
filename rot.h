@@ -2,6 +2,6 @@
 #define _ROTS_H_
 
 //4-bit rotate right
-#define ROTR4(x, n) ((x >> n) | (x << (4 - n)))
+#define ROTR4(x, n) (((x >> n) | (x << (4 - n))) % 16)
 
 #endif
