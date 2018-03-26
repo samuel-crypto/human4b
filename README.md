@@ -44,18 +44,15 @@ The round design digram I have created (in probably pretty readable form), and i
 ### Reasoning about security
 
 I do not personally think this will turn out to be a strong PRNG, while the output (and diffusion) appears to be impressive at first sight, I can already find suspicious repeats, and some keys that appear to be weak, for example:
-`
 
-[samuel@localhost HumanC]$ ./human4b --hex 1000000004
+`[samuel@localhost HumanC]$ ./human4b --hex 1000000004
 6274730FD968329174EDBE49A5C39D6CCFDAFAB11163F6A99E80D4731D38AAD1659D60ED1ACC94A493A168A9BE6D8FE6E263ADCB165EA63FC41CE0A1FC6366936C5A1$
 [samuel@localhost HumanC]$ ./human4b --hex 1000000005
 016F4CA40BE2B1C54BA24A1CCCBDC0D7185D4B8F33D5BDDCE2ED2946A962C293D8E0EA393D11EFB4B9C3422EAAD77BADA1D6C9BADD8A21C1523136CDE5E5E7E6453C5$
 [samuel@localhost HumanC]$ ./human4b --hex 1000000006
 BCE0EF5208AFDCB1EE98E6BAC522B03F85B62C13C565466BDA7A8EEFE61A4B6C3FD0A5B65788DCCB80C5DFBD393214669C3F462316F9B2F20358B64101A5AFDFD0941$
 [samuel@localhost HumanC]$ ./human4b --hex 1000000005
-016F4CA40BE2B1C54BA24A1CCCBDC0D7185D4B8F33D5BDDCE2ED2946A962C293D8E0EA393D11EFB4B9C3422EAAD77BADA1D6C9BADD8A21C1523136CDE5E5E7E6453C5$
-
-`
+016F4CA40BE2B1C54BA24A1CCCBDC0D7185D4B8F33D5BDDCE2ED2946A962C293D8E0EA393D11EFB4B9C3422EAAD77BADA1D6C9BADD8A21C1523136CDE5E5E7E6453C5$`
 
 One will notice that 'CC' then '11' then '88' and '11' appear to repeat in the same position in all the keystreams.
 The other concern is that the keystream has a maximum length of 256, but if this is close to a CSPRNG one can simply use the first 3 chars of the key as a nonce (which requires uniqueness but not randomness), which would hugely increase the number of encryptable messages.
