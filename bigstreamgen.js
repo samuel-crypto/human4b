@@ -7,7 +7,7 @@ for(var i = 1; i < 16; i++)
 		for(var k = 0; k < 16; k++)
 		{
 			var nonce = get_hex(i) + get_hex(j) + get_hex(k); 
-			var code = execSync('./human4b --bin ' + nonce + '7DDBFC09F0 >> bigstream.bin');
+			var code = execSync('./human4b --hex ' + nonce + '0000000000000000000000000000000000000000000000000000000000000000000000000000000000 >> bigstream.hex');
 		}
 	}
 }
