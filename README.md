@@ -41,23 +41,12 @@ Running `./human4b --hex FFFF0000FFFF0000FFFF0000F` gives output:
 
 The round design digram I have created (in probably pretty readable form), and it can be seen [here](https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Untitled%20Diagram.xml#R5VtNk6M2EP01PmYLIQns49g7m01VUpvKHDJ7ZG2NTRYjIouxnV8fYcSnxKxTNg1D5jAFjayPp9cPdUvM8Gp%2F%2BlkEye43vmHRzHU2pxn%2BOHPdue%2Bp%2F5nhnBsIcnPDVoSb3IQqw1P4D9NGR1vTcMMOjYKS80iGSdO45nHM1rJhC4Tgx2axFx41W02CLTMMT%2BsgMq1%2Fhhu508Ny%2Fcr%2BmYXbXdEy8hb5k2%2FB%2BvtW8DTW7c1c%2FHL5yx%2Fvg6IuPdDDLtjwY82EH2d4JTiX%2BdX%2BtGJRBm0BW%2F67Tx1Py34LFstrfqCn5TWIUj30z%2Bk%2BiMlSGVdhsmNCXeTjUTCm8VqGPNZdl%2BcCLslOqrXlTu4jZUDq8iAF%2F85WPOJCWWIeq5LLlzCKWqYgCrexul2r%2Fqq28PKVCRmqiXjQD%2FbhZpM1szzuQsmekmCdtXlUrFO2S8dYNhRH3emhqArYqRMOVIKsuMv4nklxVkUK4uppKWirb48VB2gxc7va%2FBe2QNNuW1ZcQa8uNPodU4cMWNlGkVLfciF3fMvjIHqsrC0AavizUyifM%2FMHqu%2B%2BFk9i1bHao%2Bz2q67gLyblWXtjkEquTFW7v3Ke6DrynmbdextnNRqeirUuhbUjB2LLdCnPPhuCRYEMX5u13wSuDwMuOIDoVgT1T3%2FnoWq49APacoRSmIsq8j7oX1Xz8CBEcK4VS7ICh%2B52UEc7nzrKE3JbeYJoizZ5jysSlRhexStsyOcvcZLKGV0%2Bz%2BhHg3NNRtkUrcayO8gZcpvDX5h6hmx65t1Dz1xgPUMNNbuU69cdyYB6RqagZxYAEQZCkLzhuZlLZAsgNAYfxs6APkyn7sN0QAqi%2BRSc2IYglAzSK5zYHYMTk%2FlwTlwsUqYbWHgmBfPAFoCCnkHBmetFWTT8TV1ss4vnL38UNlVbaTZnJYrC5NAV6955ZUhpg5Al0%2BqhroWQ9B6EhH6rgBMSWSK1fMUB8Voxg5J3QUmMm5TEGJCSQPmBASlpE0mwcOWdqiRFLUpa3tt9UbJg%2F3Qp6boWSs6BKInBPR46tLHBi%2B%2BSLrw1y0fpD7J2%2BLby%2FsJpUeG2LF%2BBZFO%2Bgn0mOFqk3rpzzMw%2BeCKQNIWM%2BKaQ%2BRYhu8fGBobe2ABPItgSWXBCBpQKHPA9YYEXQ8V3lkThf%2FJ9M%2FgGTyC6A%2Fr%2B5BOItuQDGDkxUAZxQN%2B3wQsVttiTO9f7vju471NnON8nQAFMzwScWwi4gCLg3EbAS4z8wi8r4Apc7%2B%2BUFw9%2BOlzgeFAFCEpO1cMqql7Wgu28ro54G36p6n9okpZaom6PmqS9R7KcAL2wej4oYgn9CNS2VtH4%2F4m02G2T1rMobW%2BkncRGIra86okPRdruDOVkSUudNml9yy5QX6Sl5uroPZJ2YZKWdsB%2Bf9IuOkk76rR6e%2FNx4cCl1UkvtEM10tVipEHyvqQ4MD%2FEirVofPxHMlAzZzxfUIODvR3JoJPP2RHLDjgFO9s3kR1wUF30eqFkty7CH9e1pJHBgiJyzXlTPAZdJAi3VoWw0tgPD8ckjb5FGikUD%2F33KY1e63UNKY20n0TmmKTREsWAhd7EjGJMaSRjkEZvPuSa0VxZf0llhlP2fatQ%2F%2BPsK8zya82hl9etT4%2BQY%2FmYsj%2BwzBXgmMFqf%2BMBDJZ5jH7MYFGfwoGlbquPsfOjQ9UH7%2FjxXw%3D%3D). All calculations work with 4-bit numbers. The other thing is I tried making the round function in the code readable, so if you prefer that feel free.
 
+### Dieharder
+Latest `dieharder` tests can be found in [dieharder.txt](dieharder.txt).
+
 ### Reasoning about security
 
-I do not personally think this will turn out to be a strong PRNG, while the output (and diffusion) appears to be impressive at first sight, I can already find suspicious repeats, and some keys that appear to be weak, for example:
-
-`[samuel@localhost HumanC]$ ./human4b --hex 1000000004
-6274730FD968329174EDBE49A5C39D6CCFDAFAB11163F6A99E80D4731D38AAD1659D60ED1ACC94A493A168A9BE6D8FE6E263ADCB165EA63FC41CE0A1FC6366936C5A1$
-[samuel@localhost HumanC]$ ./human4b --hex 1000000005
-016F4CA40BE2B1C54BA24A1CCCBDC0D7185D4B8F33D5BDDCE2ED2946A962C293D8E0EA393D11EFB4B9C3422EAAD77BADA1D6C9BADD8A21C1523136CDE5E5E7E6453C5$
-[samuel@localhost HumanC]$ ./human4b --hex 1000000006
-BCE0EF5208AFDCB1EE98E6BAC522B03F85B62C13C565466BDA7A8EEFE61A4B6C3FD0A5B65788DCCB80C5DFBD393214669C3F462316F9B2F20358B64101A5AFDFD0941$
-[samuel@localhost HumanC]$ ./human4b --hex 1000000005
-016F4CA40BE2B1C54BA24A1CCCBDC0D7185D4B8F33D5BDDCE2ED2946A962C293D8E0EA393D11EFB4B9C3422EAAD77BADA1D6C9BADD8A21C1523136CDE5E5E7E6453C5$`
-
-One will notice that 'CC' then '11' then '88' and '11' appear to repeat in the same position in all the keystreams.
-The other concern is that the keystream has a maximum length of 256, but if this is close to a CSPRNG one can simply use the first 3 chars of the key as a nonce (which requires uniqueness but not randomness), which would hugely increase the number of encryptable messages.
-
-Another suspicion I have is that a large source of defects comes from increasing the key length while keeping monotonous values, while a key of `0`s is impractical (one would want a random key), I am ready to consider efficient any attacks, including those against `0` padded keys.
+I do not personally think this will turn out to be a strong PRNG, but on the basics the output (and diffusion) appears to be alright, and distribution/dieharder works pretty well.
 
 ### Design ideas
 
